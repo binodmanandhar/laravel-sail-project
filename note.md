@@ -51,3 +51,10 @@ docker compose exec laravel.test php artisan make:controller ExampleController -
 ### View route list
 
 docker compose exec laravel.test php artisan route:list --except-vendor
+
+
+### How to view git commit in graph
+
+1) Install git graph extension
+2) Ctrl + Shift + p
+3) Git Graph: View Git Graph
