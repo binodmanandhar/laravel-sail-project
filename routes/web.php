@@ -49,3 +49,36 @@ Route::get('/route-parameter-constraint/{name}/{id?}', function ($name, $id) {
 Route::get('/implicit-binding/{user}', function (User $user) {
     return $user->email;
 }); 
+
+
+/************************************************/
+/************** route prefixing   ***************/
+/************************************************/
+
+Route::prefix('route-prefix')->group(function () {
+    Route::get('/first', function () {
+        return "This is first route";
+    });
+
+    Route::get('/second', function () {
+        return "This is second route";
+    });
+});
+
+
+/************************************************/
+/***named routes can be used in view file to generate link   ***************/
+/************************************************/
+
+Route::get('/named-route/{id?}', function ($id=null) {
+    dump(route('named.route', ['id' => $id, 'name' => 'Binod Manandhar', 'age' => 30]));
+    return $id;
+})->name('named.route'); 
+
+/************************************************/
+/**************       Redirects   ***************/
+/************************************************/
+
+Route::get('redirect', function () {
+    return redirect()->route('named.route', ['id' => 1]);
+});
