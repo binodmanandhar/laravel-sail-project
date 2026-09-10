@@ -35,3 +35,19 @@ User::factory()->count(50)->create();
 }
 
 php artisan db:seed --class=UserSeeder
+
+
+
+
+### Creating controllers
+
+docker compose exec laravel.test php artisan make:controller UserController
+
+### creating controller resource
+
+docker compose exec laravel.test php artisan make:controller ExampleController --resource
+
+
+### View route list
+
+docker compose exec laravel.test php artisan route:list --except-vendor

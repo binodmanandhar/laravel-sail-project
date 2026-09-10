@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Http\Controllers\PhotoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -82,3 +82,12 @@ Route::get('/named-route/{id?}', function ($id=null) {
 Route::get('redirect', function () {
     return redirect()->route('named.route', ['id' => 1]);
 });
+
+/************************************************/
+/**************  Resource Controller   **********/
+/************************************************/
+
+// Route::resource('photos', PhotoController::class);
+// Route::resource('photos', PhotoController::class)->only(['index', 'show']);
+// Route::resource('photos', PhotoController::class)->except(['create', 'store', 'update', 'destroy']);
+Route::apiResource('photos', PhotoController::class); // without create and edit routes
