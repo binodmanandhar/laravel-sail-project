@@ -35,3 +35,30 @@ User::factory()->count(50)->create();
 }
 
 php artisan db:seed --class=UserSeeder
+
+
+
+#### Install JETSTEAM
+
+docker compose exec laravel.test composer require laravel/jetstream
+
+
+#### For the standard Livewire stack:
+
+docker compose exec laravel.test php artisan jetstream:install livewire
+
+#### Install frontend dependencies
+
+docker compose exec laravel.test npm install
+
+Then 
+
+docker compose exec laravel.test npm run build
+
+
+### Run migrations
+docker compose exec laravel.test php artisan migrate
+
+If this is only a practice project and you don't mind deleting your existing database:
+
+docker compose exec laravel.test php artisan migrate:fresh
