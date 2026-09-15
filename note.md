@@ -62,3 +62,29 @@ docker compose exec laravel.test php artisan route:list --except-vendor
 1) Install git graph extension
 2) Ctrl + Shift + p
 3) Git Graph: View Git Graph
+
+
+#### Install JETSTEAM
+
+docker compose exec laravel.test composer require laravel/jetstream
+
+
+#### For the standard Livewire stack:
+
+docker compose exec laravel.test php artisan jetstream:install livewire
+
+#### Install frontend dependencies
+
+docker compose exec laravel.test npm install
+
+Then 
+
+docker compose exec laravel.test npm run build
+
+
+### Run migrations
+docker compose exec laravel.test php artisan migrate
+
+If this is only a practice project and you don't mind deleting your existing database:
+
+docker compose exec laravel.test php artisan migrate:fresh
