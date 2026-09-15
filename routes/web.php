@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvokableController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -83,6 +85,8 @@ Route::get('redirect', function () {
     return redirect()->route('named.route', ['id' => 1]);
 });
 
+ Route::get('/user', [UserController::class, 'index']); // This line seems incorrect, as Route::resource expects a controller class, not a method. It should be Route::resource('photos', UserController::class); if you want to use the UserController for resource routes.
+
 /************************************************/
 /**************  Resource Controller   **********/
 /************************************************/
@@ -91,3 +95,10 @@ Route::get('redirect', function () {
 // Route::resource('photos', PhotoController::class)->only(['index', 'show']);
 // Route::resource('photos', PhotoController::class)->except(['create', 'store', 'update', 'destroy']);
 Route::apiResource('photos', PhotoController::class); // without create and edit routes
+
+
+/************************************************/
+/*********  Single action Controller   **********/
+/************************************************/
+// we don't need to specify the method name in the controller, it will automatically call the __invoke method of the controller
+Route::get('/invokable-controller', [InvokableController::class]);

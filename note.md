@@ -48,6 +48,10 @@ docker compose exec laravel.test php artisan make:controller UserController
 docker compose exec laravel.test php artisan make:controller ExampleController --resource
 
 
+### Single action controller
+
+docker compose exec laravel.test php artisan make:controller InvokableController --invokable
+
 ### View route list
 
 docker compose exec laravel.test php artisan route:list --except-vendor
